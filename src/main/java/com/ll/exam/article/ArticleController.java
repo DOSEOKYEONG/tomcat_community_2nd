@@ -13,7 +13,7 @@ public class ArticleController {
     }
 
     public void showList(Rq rq) {
-        List<ArticleDto> articleDtoList = articleService.getList();
+        List<ArticleDto> articleDtoList = articleService.findAll();
 
         rq.setAttr("articleDtoList", articleDtoList);
         rq.view("/usr/article/list");
@@ -104,5 +104,27 @@ public class ArticleController {
         rq.setAttr("article", articleDto);
         rq.view("usr/article/detail");
         rq.replace("usr/article/detail/%d".formatted(id), "%d번 글이 수정되었습니다".formatted(id));
+    }
+
+    public void getArticles(Rq rq) {
+        long fromId = rq.getLongParam("fromId", -1);
+        List<ArticleDto> articleDtoList = null;
+
+        if ( fromId == -1 ) {
+            articleDtoList = articleService.findAll();
+        }
+        else {
+            articleDtoList = articleService.findIdGreaterThan(fromId);
+        }
+
+//        Map<String, Object> resultData = new HashMap<>();
+//        resultData.put("resultCode", "S-1");
+//        resultData.put("msg", "성공");
+//        resultData.put("Data", articleDtoList);
+//        Map<String, Object> resultData = Ut.mapOf("resultCode", "S-1", "msg", "성공", "Data", articleDtoList);
+//        ResultData<List<ArticleDto>> resultData = new ResultData("S-1", "성공", articleDtoList);
+//        ResultData resultData = new ResultData("S-1", "성공", articleDtoList);
+//        rq.json(resultData);
+        rq.successJson(articleDtoList);
     }
 }

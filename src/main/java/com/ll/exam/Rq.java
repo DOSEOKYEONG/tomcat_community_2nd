@@ -1,6 +1,7 @@
 package com.ll.exam;
 
 import com.ll.exam.article.Dto.ArticleDto;
+import com.ll.exam.util.Ut;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -42,12 +43,25 @@ public class Rq {
         String value = req.getParameter(paramName);
 
         if (value == null) {
-            System.out.println(value);
             return defaultValue;
         }
 
         try {
             return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return defaultValue;
+        }
+    }
+
+    public long getLongParam(String paramName, long defaultValue) {
+        String value = req.getParameter(paramName);
+
+        if (value == null) {
+            return defaultValue;
+        }
+
+        try {
+            return Long.parseLong(value);
         } catch (NumberFormatException e) {
             return defaultValue;
         }
@@ -146,5 +160,24 @@ public class Rq {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void json(Object data) {
+        resp.setContentType("application/json; charset=utf-8");
+
+        String result = Ut.json.toStr(data, "");
+        println(result);
+    }
+
+    public void json(Object data, String resultCode, String msg) {
+        json(new ResultData(resultCode, msg, data));
+    }
+
+    public void successJson(Object data) {
+        json(data, "S-1", "성공");
+    }
+
+    public void failJson(Object data) {
+        json(data, "F-1", "실패");
     }
 }

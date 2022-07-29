@@ -6,10 +6,19 @@ import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ll.exam.article.Dto.ArticleDto;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Ut {
+
+    public static Map<String, Object> mapOf(Object... arr) {
+        Map<String, Object> result = new HashMap<>();
+        for (int i = 0; i < arr.length / 2; i++) {
+            result.put((String) arr[i*2], arr[(i*2) + 1]);
+        }
+        return result;
+    }
 
     public static class json{
         private static final ObjectMapper objectMapper;
@@ -41,7 +50,7 @@ public class Ut {
             }
         }
 
-        public static <T> List<T> toObj(String jsonStr, TypeReference<List<T>> typeReference, List<T> defaultValue) {
+        public static <T> T toObj(String jsonStr, TypeReference<T> typeReference, T defaultValue) {
             try {
                 return objectMapper.readValue(jsonStr, typeReference);
             } catch (JsonProcessingException e) {
@@ -49,13 +58,13 @@ public class Ut {
             }
         }
 
-        public static <K, V> Map<K, V> MaptoObj(String jsonStr, TypeReference<Map<K, V>> typeReference, Map<K, V> defaultValue) {
-            try {
-                return objectMapper.readValue(jsonStr, typeReference);
-            } catch (JsonProcessingException e) {
-                return defaultValue;
-            }
-        }
+//        public static <K, V> Map<K, V> MaptoObj(String jsonStr, TypeReference<Map<K, V>> typeReference, Map<K, V> defaultValue) {
+//            try {
+//                return objectMapper.readValue(jsonStr, typeReference);
+//            } catch (JsonProcessingException e) {
+//                return defaultValue;
+//            }
+//        }
 
         public static String listToJson(List objList, String defaultValue) {
             try {

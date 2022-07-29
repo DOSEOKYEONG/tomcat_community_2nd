@@ -98,10 +98,25 @@ public class AppTest {
 
         String MapToJson = Ut.json.MapToJson(map, "");
 
-        Map<String, ArticleDto> JsonToMap = Ut.json.MaptoObj(MapToJson, new TypeReference<>(){}, null);
+        Map<String, ArticleDto> JsonToMap = Ut.json.toObj(MapToJson, new TypeReference<>(){}, null);
 
         System.out.println(JsonToMap);
 
         assertThat(map).isEqualTo(JsonToMap);
+    }
+
+    @Test
+    void Testdd(){
+        List<ArticleDto> articleDtoList = new ArrayList<>();
+        ArticleDto articleDto1 = new ArticleDto(1, "1", "1");
+        ArticleDto articleDto2 = new ArticleDto(2, "2", "2");
+        ArticleDto articleDto3 = new ArticleDto(3, "3", "3");
+        articleDtoList.add(articleDto1);
+        articleDtoList.add(articleDto2);
+        articleDtoList.add(articleDto3);
+
+        Map<String, Object> resultData = Ut.mapOf("resultCode", "S-1", "msg", "성공", "Data", articleDtoList);
+
+        System.out.println(resultData);
     }
 }

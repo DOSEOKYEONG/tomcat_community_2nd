@@ -4,6 +4,7 @@ import com.ll.exam.article.Dto.ArticleDto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ArticleRepository {
     private static List<ArticleDto> articleDtoList;
@@ -59,5 +60,13 @@ public class ArticleRepository {
         System.out.println(result);
 
         return id;
+    }
+
+    public List<ArticleDto> findIdGreaterThan(long id) {
+        return articleDtoList
+                .stream()
+                .filter(articleDto -> articleDto.getId() > id)
+                .collect(Collectors.toList());
+
     }
 }

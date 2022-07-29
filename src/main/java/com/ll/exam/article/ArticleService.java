@@ -15,7 +15,7 @@ public class ArticleService {
         return articleRepository.write(title, body);
     }
 
-    public List<ArticleDto> getList() {
+    public List<ArticleDto> findAll() {
         return articleRepository.getList();
     }
 
@@ -29,5 +29,9 @@ public class ArticleService {
 
     public long modify(long id, String title, String body) {
         return articleRepository.modify(id, title, body);
+    }
+
+    public List<ArticleDto> findIdGreaterThan(long id) {
+        return articleRepository.findIdGreaterThan(id);
     }
 }
