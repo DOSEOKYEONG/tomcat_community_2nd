@@ -26,10 +26,6 @@ public class ArticleController {
     }
 
     public void doWrite(Rq rq) {
-//        String title = rq.getParam("title", "");
-//        String body = rq.getParam("body", "");
-//        long id = articleService.write(title, body);
-//        rq.replace("/usr/article/detail/free/%d".formatted(id), "%d번 글이 생성되었습니다".formatted(id));
         String title = rq.getParam("title", "");
         String body = rq.getParam("body", "");
         LocalDateTime localDateTime = LocalDateTime.now();
@@ -37,15 +33,6 @@ public class ArticleController {
         long id = articleService.write(title, body, localDateTime, localDateTime);
         rq.replace("/usr/article/detail/free/%d".formatted(id), "%d번 글이 생성되었습니다".formatted(id));
     }
-
-//    public void doWrite_(Rq rq) {
-//        String title = rq.getParam("title", "");
-//        String body = rq.getParam("body", "");
-//        LocalDateTime localDateTime = LocalDateTime.now();
-//
-//        long id = articleService.write_(title, body, localDateTime, localDateTime);
-//        rq.replace("/usr/article/detail/free/%d".formatted(id), "%d번 글이 생성되었습니다".formatted(id));
-//    }
 
     public void showDetail(Rq rq) {
         long id = rq.getLongPathValueByIndex(1, 0);
@@ -99,13 +86,15 @@ public class ArticleController {
         long id = rq.getLongPathValueByIndex(1, 0);
         String title = rq.getParam("title", "");
         String body = rq.getParam("body", "");
+        LocalDateTime modifyDate = LocalDateTime.now();
+
 
         if (id == 0) {
             rq.historyBack("번호를 입력해주세요.");
             return;
         }
 
-        articleService.modify(id, title, body);
+        articleService.modify(id, title, body, modifyDate);
 
         ArticleDto articleDto = articleService.findById(id);
         if (articleDto == null) {

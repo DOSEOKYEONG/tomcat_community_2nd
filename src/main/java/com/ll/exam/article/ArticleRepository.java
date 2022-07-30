@@ -17,20 +17,11 @@ public class ArticleRepository {
         articleDtoList = new ArrayList<>();
         lastId = 0;
     }
+
     public ArticleRepository() {
     }
 
-//    public long write(String title, String body) {
-//        long id = ++lastId;
-//        ArticleDto articleDto = new ArticleDto(id, title, body);
-//        String result = articleDto.toString();
-//        System.out.println(result);
-//        articleDtoList.add(articleDto);
-//
-//        return id;
-//    }
-
-        public long write(String title, String body, LocalDateTime createDate, LocalDateTime modifyDate) {
+    public long write(String title, String body, LocalDateTime createDate, LocalDateTime modifyDate) {
         long id = ++lastId;
         ArticleDto articleDto = new ArticleDto(id, title, body, createDate, modifyDate);
         String result = articleDto.toString();
@@ -62,13 +53,14 @@ public class ArticleRepository {
         return id;
     }
 
-    public long modify(long id, String title, String body) {
+    public long modify(long id, String title, String body, LocalDateTime modifyDate) {
         ArticleDto articleDto = findById(id);
         if (articleDto == null) {
             return 0;
         }
         articleDto.setTitle(title);
         articleDto.setBody(body);
+        articleDto.setModifyDate(modifyDate);
         String result = articleDto.toString();
         System.out.println(result);
 
