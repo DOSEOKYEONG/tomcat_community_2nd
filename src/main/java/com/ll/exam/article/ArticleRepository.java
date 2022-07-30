@@ -20,9 +20,19 @@ public class ArticleRepository {
     public ArticleRepository() {
     }
 
-    public long write(String title, String body) {
+//    public long write(String title, String body) {
+//        long id = ++lastId;
+//        ArticleDto articleDto = new ArticleDto(id, title, body);
+//        String result = articleDto.toString();
+//        System.out.println(result);
+//        articleDtoList.add(articleDto);
+//
+//        return id;
+//    }
+
+        public long write(String title, String body, LocalDateTime createDate, LocalDateTime modifyDate) {
         long id = ++lastId;
-        ArticleDto articleDto = new ArticleDto(id, title, body);
+        ArticleDto articleDto = new ArticleDto(id, title, body, createDate, modifyDate);
         String result = articleDto.toString();
         System.out.println(result);
         articleDtoList.add(articleDto);
@@ -72,14 +82,4 @@ public class ArticleRepository {
                 .collect(Collectors.toList());
 
     }
-
-//    public long write_(String title, String body, LocalDateTime createDate, LocalDateTime modifyDate) {
-//        long id = ++lastId;
-//        ArticleDto_ articleDto = new ArticleDto_(id, title, body, createDate, modifyDate);
-//        String result = articleDto.toString();
-//        System.out.println(result);
-//        articleDto_List.add(articleDto);
-//
-//        return id;
-//    }
 }

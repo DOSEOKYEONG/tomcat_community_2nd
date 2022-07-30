@@ -26,9 +26,15 @@ public class ArticleController {
     }
 
     public void doWrite(Rq rq) {
+//        String title = rq.getParam("title", "");
+//        String body = rq.getParam("body", "");
+//        long id = articleService.write(title, body);
+//        rq.replace("/usr/article/detail/free/%d".formatted(id), "%d번 글이 생성되었습니다".formatted(id));
         String title = rq.getParam("title", "");
         String body = rq.getParam("body", "");
-        long id = articleService.write(title, body);
+        LocalDateTime localDateTime = LocalDateTime.now();
+
+        long id = articleService.write(title, body, localDateTime, localDateTime);
         rq.replace("/usr/article/detail/free/%d".formatted(id), "%d번 글이 생성되었습니다".formatted(id));
     }
 

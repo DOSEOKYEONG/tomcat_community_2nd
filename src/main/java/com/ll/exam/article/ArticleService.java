@@ -12,8 +12,12 @@ public class ArticleService {
         articleRepository = new ArticleRepository();
     }
 
-    public long write(String title, String body) {
-        return articleRepository.write(title, body);
+//    public long write(String title, String body) {
+//        return articleRepository.write(title, body);
+//    }
+
+    public long write(String title, String body, LocalDateTime createDate, LocalDateTime modifyDate) {
+        return articleRepository.write(title, body, createDate, modifyDate);
     }
 
     public List<ArticleDto> findAll() {
@@ -36,7 +40,4 @@ public class ArticleService {
         return articleRepository.findIdGreaterThan(id);
     }
 
-//    public long write_(String title, String body, LocalDateTime createDate, LocalDateTime modifyDate) {
-//        return articleRepository.write_(title, body, createDate, modifyDate);
-//    }
 }
