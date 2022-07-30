@@ -2,6 +2,7 @@ package com.ll.exam.article;
 
 import com.ll.exam.article.Dto.ArticleDto;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class ArticleService {
@@ -34,4 +35,8 @@ public class ArticleService {
     public List<ArticleDto> findIdGreaterThan(long id) {
         return articleRepository.findIdGreaterThan(id);
     }
+
+//    public long write_(String title, String body, LocalDateTime createDate, LocalDateTime modifyDate) {
+//        return articleRepository.write_(title, body, createDate, modifyDate);
+//    }
 }

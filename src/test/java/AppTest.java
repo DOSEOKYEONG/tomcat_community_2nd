@@ -1,12 +1,17 @@
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.ll.exam.article.Dto.ArticleDto;
+import com.ll.exam.article.Dto.ArticleDto_;
 import com.ll.exam.util.Ut;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -118,5 +123,30 @@ public class AppTest {
         Map<String, Object> resultData = Ut.mapOf("resultCode", "S-1", "msg", "성공", "Data", articleDtoList);
 
         System.out.println(resultData);
+    }
+
+    @Test
+    void test_ArticleDto2_(){
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime localDateTime = LocalDateTime.now();
+//        System.out.println(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL).format(localDateTime));
+        System.out.println(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).format(localDateTime));
+//        System.out.println(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(localDateTime));
+        // 디비 > 받아 올 때 표시 형식
+        System.out.println(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).format(localDateTime));
+
+//        String createdDate = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG));
+//        String createdDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+//        System.out.println(createdDate);
+
+        ArticleDto_ articleDto_ = new ArticleDto_(1, "1", "1", localDateTime, localDateTime);
+
+        System.out.println(articleDto_.toString());
+
+    }
+
+    @Test
+    void articleDto_추가(){
+
     }
 }

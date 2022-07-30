@@ -15,6 +15,9 @@
             <div>
                 BODY : ${article.body}
             </div>
+            <div>
+                생성일자 : ${article.createDate}
+            </div>
         </div>
     </div>
 </section>

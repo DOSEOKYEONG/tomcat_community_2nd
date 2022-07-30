@@ -52,6 +52,9 @@ public class DispatchServlet extends HttpServlet {
                     case "/usr/article/write":
                         articleController.doWrite(rq);
                         break;
+//                    case "/usr/article/write":
+//                        articleController.doWrite_(rq);
+//                        break;
                     case "/usr/article/modify":
                         articleController.doModify(rq);
                         break;
