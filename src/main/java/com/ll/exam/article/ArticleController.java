@@ -43,6 +43,7 @@ public class ArticleController {
         }
 
         ArticleDto articleDto = articleService.findById(id);
+        List<ArticleDto> articleDtoList = articleService.findAll();
 
         if (articleDto == null) {
             rq.historyBack("해당 글이 존재하지 않습니다");
@@ -50,6 +51,7 @@ public class ArticleController {
         }
 
         rq.setAttr("article", articleDto);
+        rq.setAttr("articleDtoList", articleDtoList);
         rq.view("usr/article/detail");
     }
 
@@ -127,5 +129,23 @@ public class ArticleController {
 //        ResultData resultData = new ResultData("S-1", "성공", articleDtoList);
 //        rq.json(resultData);
         rq.successJson(articleDtoList);
+    }
+
+    public void bigger(Rq rq) {
+        long id = rq.getLongPathValueByIndex(1, 0);
+
+        if (id == 0) {
+            rq.historyBack("번호를 입력해주세요.");
+            return;
+        }
+
+        ArticleDto articleDto = articleService.findBiggerId(id);
+
+        if (articleDto == null) {
+            rq.historyBack("해당 게시글이 존재하지 않습니다.");
+        }
+        else {
+            rq.replace("/usr/article/detail/free/%d".formatted(articleDto.getId()), "");
+        }
     }
 }

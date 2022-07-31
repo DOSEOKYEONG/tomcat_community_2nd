@@ -1,17 +1,8 @@
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.ll.exam.article.Dto.ArticleDto;
-import com.ll.exam.article.Dto.ArticleDto_;
-import com.ll.exam.util.Ut;
 import org.junit.jupiter.api.Test;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -138,10 +129,6 @@ public class AppTest {
 //        String createdDate = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG));
 //        String createdDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 //        System.out.println(createdDate);
-
-        ArticleDto_ articleDto_ = new ArticleDto_(1, "1", "1", localDateTime, localDateTime);
-
-        System.out.println(articleDto_.toString());
 
     }
 

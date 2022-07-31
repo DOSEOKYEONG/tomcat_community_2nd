@@ -35,4 +35,7 @@ public class ArticleService {
         return articleRepository.findIdGreaterThan(id);
     }
 
+    public ArticleDto findBiggerId(long id) {
+        return articleRepository.findBiggerId(id);
+    }
 }

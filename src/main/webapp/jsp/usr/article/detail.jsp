@@ -27,6 +27,12 @@
                 수정일자 : <fmt:parseDate value="${article.modifyDate}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedmodifyDate" type="both" />
                 <fmt:formatDate value="${parsedmodifyDate}" pattern="yyyy.MM.dd (EEE) HH:mm" />
             </div>
+            <div>
+                <a class="hover:underline hover: text-[red]" href="usr/article/smaller/free/${article.id}">이전글</a>
+            </div>
+            <div >
+                <a class="hover:underline hover: text-[red]" >다음글</a>
+            </div>
         </div>
     </div>
 </section>

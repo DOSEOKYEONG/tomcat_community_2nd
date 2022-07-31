@@ -44,6 +44,9 @@ public class DispatchServlet extends HttpServlet {
                     case "/usr/article/getArticles":
                         articleController.getArticles(rq);
                         break;
+                    case "/usr/article/bigger":
+                        articleController.bigger(rq);
+                        break;
                 }
                 break;
 

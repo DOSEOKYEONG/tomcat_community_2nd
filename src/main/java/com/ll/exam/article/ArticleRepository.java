@@ -1,7 +1,6 @@
 package com.ll.exam.article;
 
 import com.ll.exam.article.Dto.ArticleDto;
-import com.ll.exam.article.Dto.ArticleDto_;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -10,7 +9,6 @@ import java.util.stream.Collectors;
 
 public class ArticleRepository {
     private static List<ArticleDto> articleDtoList;
-    private static List<ArticleDto_> articleDto_List;
     private static long lastId;
 
     static {
@@ -73,5 +71,14 @@ public class ArticleRepository {
                 .filter(articleDto -> articleDto.getId() > id)
                 .collect(Collectors.toList());
 
+    }
+
+    public ArticleDto findBiggerId(long id) {
+        for (ArticleDto articleDto : articleDtoList) {
+            if (articleDto.getId() > id) {
+                return articleDto;
+            }
+        }
+        return null;
     }
 }
